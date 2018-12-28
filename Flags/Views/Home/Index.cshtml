@@ -10,7 +10,9 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <img src="~/Images/Afghanistan.jpg" />
+                            <span id="flagDisplay">
+                                <img src="Images/Algeria.jpg" />
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -23,9 +25,17 @@
 </button>
 
 <script>
+
+    $('#collapse2').on('hidden.bs.collapse', function () {
+        $('#flagDisplay').html('<img src="Images/albania.jpg" />');
+        $('#collapse2').collapse('show');
+    });
+   
     $('#clickMe').click(() => {
-        if ($('#collapse2').attr("aria-expanded") == 'true') {
+        if ($('#collapse2').attr('aria-expanded') == 'true') {
+
             $('#collapse2').collapse('hide');
+
         } else {
             $('#collapse2').collapse('show');
         }
