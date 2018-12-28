@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flags", "Flags\Flags.csproj
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Flags.Tests", "Flags.Tests\Flags.Tests.csproj", "{22F616E6-E755-4539-A721-6174B34402DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlagsBackend", "FlagsBackend\FlagsBackend.csproj", "{18A3F50B-FDBE-4EB4-B5C4-90A4CE884302}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{22F616E6-E755-4539-A721-6174B34402DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22F616E6-E755-4539-A721-6174B34402DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22F616E6-E755-4539-A721-6174B34402DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18A3F50B-FDBE-4EB4-B5C4-90A4CE884302}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18A3F50B-FDBE-4EB4-B5C4-90A4CE884302}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18A3F50B-FDBE-4EB4-B5C4-90A4CE884302}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18A3F50B-FDBE-4EB4-B5C4-90A4CE884302}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
