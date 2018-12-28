@@ -4,11 +4,30 @@
 <div class="container">
     <div class="panel-group">
         <div class="panel panel-default">
-            <div class="panel-body">
 
 
-
+            <div id="collapse2" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <img src="~/Images/Afghanistan.jpg" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+<button type="button" id="clickMe">
+    ClickMe
+</button>
+
+<script>
+    $('#clickMe').click(() => {
+        if ($('#collapse2').attr("aria-expanded") == 'true') {
+            $('#collapse2').collapse('hide');
+        } else {
+            $('#collapse2').collapse('show');
+        }
+    })
+</script>
