@@ -35,3 +35,7 @@ textarea {
 .panel-default > .panel-heading-white .blueBadge {
     background-color: #ACE;
 }
+
+img{
+    width:100%;
+}

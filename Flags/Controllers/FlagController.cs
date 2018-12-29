@@ -12,8 +12,13 @@ namespace Flags.Controllers
         public ActionResult Index()
         {
             Random rnd = new Random();
-            int flagImageIndex = rnd.Next(0, 3);
-            IList<string> flagImages = new List<string>{ "http://flagpedia.net/data/flags/normal/ca.png" };
+            int flagImageIndex = rnd.Next(0, 4);
+            IList<string> flagImages = new List<string>{
+                "Images\\Flags\\za.png"
+                ,"Images\\Flags\\bz.png"
+                ,"Images\\Flags\\ch.png"
+                ,"Images\\Flags\\cr.png"
+            };
             return Content($"<img src=\"{flagImages[flagImageIndex]}\" />");
         }
 

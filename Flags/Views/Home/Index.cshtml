@@ -9,13 +9,14 @@
         <div class="panel panel-default">
 
 
-            <div id="collapse2" class="panel-collapse collapse">
+            <div id="collapse2" class="panel-collapse collapse in">
                 <div class="panel-body">
                     <div class="row">
-                        <div class="col-md-12">
-                            <div id="flagDisplay">
-                                <img src="Images/Algeria.jpg" />
-                            </div>
+                        <div class="col-md-4" id="flagDisplay1">
+                        </div>
+                        <div class="col-md-4" id="flagDisplay2">
+                        </div>
+                        <div class="col-md-4" id="flagDisplay3">
                         </div>
                     </div>
                 </div>
@@ -36,12 +37,23 @@
     });
    
     $('#clickMe').click(() => {
-        if ($('#collapse2').attr('aria-expanded') == 'true') {
+        //if ($('#collapse2').attr('aria-expanded') == 'true') {
 
-            $('#collapse2').collapse('hide');
+        //    $('#collapse2').collapse('hide');
 
-        } else {
-            $('#collapse2').collapse('show');
-        }
+        //} else {
+        //    $('#collapse2').collapse('show');
+        //}
+        $('#flagDisplay1').load("/Flag", function (response, status) {
+            //alert(response, status);
+        });
+
+        $('#flagDisplay2').load("/Flag", function (response, status) {
+            //alert(response, status);
+        });
+
+        $('#flagDisplay3').load("/Flag", function (response, status) {
+            //alert(response, status);
+        });
     })
 </script>
