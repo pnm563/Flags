@@ -1,4 +1,8 @@
-﻿using Models;
+﻿using Common;
+using FlagsBackend.Filters;
+using Logic;
+using Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +17,7 @@ namespace FlagsBackend.Controllers
         // GET: api/CountryFlag
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value3" };
+           return new string[] { "value1", "value3" };
         }
 
         // GET: api/CountryFlag/5
@@ -23,9 +27,11 @@ namespace FlagsBackend.Controllers
         }
 
         // POST: api/CountryFlag
+        [GenExceptionFilter]
         public void Post([FromBody]CountryFlag theCountryFlag)
         {
-            string thing = "l";
+            FlagLogic flagLogic = new FlagLogic();
+            flagLogic.AddCountryFlag(theCountryFlag);
         }
 
         // PUT: api/CountryFlag/5

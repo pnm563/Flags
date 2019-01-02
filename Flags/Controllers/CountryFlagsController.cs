@@ -53,7 +53,7 @@ namespace Flags.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken,ValidateInput(false)]
         public ActionResult Create([Bind(Include = "ID,CountryCode,Description")] CountryFlag countryFlag)
         {
             if (ModelState.IsValid)
@@ -88,13 +88,13 @@ namespace Flags.Controllers
                     }
                     else
                     {
-                        string innerExceptions = String.Empty;
+                        string exceptionDetail = ex.InnerException == null ? ex.Message : String.Empty;
                         while (ex.InnerException != null)
                         {
-                            innerExceptions += $"{ex.Message} ";
+                            exceptionDetail += $"{ex.Message} ";
                             ex = ex.InnerException;
                         }
-                        ViewBag.ViewError = String.Format(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagCreateAPIFailed], $"{ex.Message} {innerExceptions}");
+                        ViewBag.ViewError = String.Format(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagCreateAPIFailed], $"{exceptionDetail}");
                     }
                 }
             }

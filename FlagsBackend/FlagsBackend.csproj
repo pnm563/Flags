@@ -185,6 +185,7 @@
     <Compile Include="Controllers\CountryFlagController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filters\Filters.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -281,6 +282,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{4a874243-f035-42fa-ad06-0d8f1049a443}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Logic\Logic.csproj">
+      <Project>{9B9CCC05-62D8-4D89-B3D1-E538D54F9669}</Project>
+      <Name>Logic</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{9C2C04C9-5734-4B8A-B054-2AFD8ACCD9C2}</Project>
