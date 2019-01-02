@@ -29,5 +29,6 @@ namespace Flags.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

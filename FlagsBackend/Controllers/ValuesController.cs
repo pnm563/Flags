@@ -15,6 +15,12 @@ namespace FlagsBackend.Controllers
             return "<img src=\"Images\\Albania.jpg\" />";
         }
 
+        [HttpGet]
+        public string Thing()
+        {
+            return "<img src=\"Images\\Albania.jpg\" />";
+        }
+
         // GET api/values/5
         public string Get(int id)
         {
