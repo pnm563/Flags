@@ -1,42 +1,34 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
-using System.Text;
 using System.Web;
 using System.Web.Mvc;
-using Common;
 using Flags.Models;
 using Models;
-using Newtonsoft.Json;
 
 namespace Flags.Controllers
 {
-    public class CountryFlagsController : Controller
+    public class CountryFlags1Controller : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: CountryFlags
+        // GET: CountryFlags1
         public ActionResult Index()
         {
-            //return View(db.CountryFlags.ToList());
-            throw new Exception("oooopsy");
-            return View();
+            return View(db.CountryFlags.ToList());
         }
 
-        //GET: CountryFlags/Details/5
+        // GET: CountryFlags1/Details/5
         public ActionResult Details(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //CountryFlag countryFlag = db.CountryFlags.Find(id);
-            CountryFlag countryFlag = new CountryFlag();
+            CountryFlag countryFlag = db.CountryFlags.Find(id);
             if (countryFlag == null)
             {
                 return HttpNotFound();
@@ -44,58 +36,38 @@ namespace Flags.Controllers
             return View(countryFlag);
         }
 
-        // GET: CountryFlags/Create
+        // GET: CountryFlags1/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: CountryFlags/Create
+        // POST: CountryFlags1/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken, ValidateInput(false)]
+        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "ID,CountryCode,Description")] CountryFlag countryFlag)
         {
             if (ModelState.IsValid)
             {
-
-                string JSONtheCountryFlag = JsonConvert.SerializeObject(countryFlag);
-
-                HttpContent content = new StringContent(JSONtheCountryFlag, Encoding.UTF8, "application/json");
-
-                using (HttpClient client = new HttpClient())
-                {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.APIURL]);
-
-                    HttpResponseMessage response = client.PostAsync(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagAPIURN], content).Result;
-
-                    if (!response.IsSuccessStatusCode)
-                    {
-                        APIError aPIError = JsonConvert.DeserializeObject<APIError>(response.Content.ReadAsStringAsync().Result);
-                        aPIError.MessageDetail += $"HTTP response: {response.StatusCode.ToString()} ";
-                        throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
-                    }
-                }
+                countryFlag.ID = Guid.NewGuid();
+                db.CountryFlags.Add(countryFlag);
+                db.SaveChanges();
                 return RedirectToAction("Index");
-
-
             }
-            else
-            {
-                throw new Exception(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagCreateFormInvalid]);
-            }
+
+            return View(countryFlag);
         }
 
-        // GET: CountryFlags/Edit/5
+        // GET: CountryFlags1/Edit/5
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //CountryFlag countryFlag = db.CountryFlags.Find(id);
-            CountryFlag countryFlag = new CountryFlag();
+            CountryFlag countryFlag = db.CountryFlags.Find(id);
             if (countryFlag == null)
             {
                 return HttpNotFound();
@@ -103,7 +75,7 @@ namespace Flags.Controllers
             return View(countryFlag);
         }
 
-        // POST: CountryFlags/Edit/5
+        // POST: CountryFlags1/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -112,22 +84,21 @@ namespace Flags.Controllers
         {
             if (ModelState.IsValid)
             {
-                //db.Entry(countryFlag).State = EntityState.Modified;
-                //db.SaveChanges();
+                db.Entry(countryFlag).State = EntityState.Modified;
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             return View(countryFlag);
         }
 
-        // GET: CountryFlags/Delete/5
+        // GET: CountryFlags1/Delete/5
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            //CountryFlag countryFlag = db.CountryFlags.Find(id);
-            CountryFlag countryFlag = new CountryFlag();
+            CountryFlag countryFlag = db.CountryFlags.Find(id);
             if (countryFlag == null)
             {
                 return HttpNotFound();
@@ -135,14 +106,14 @@ namespace Flags.Controllers
             return View(countryFlag);
         }
 
-        // POST: CountryFlags/Delete/5
+        // POST: CountryFlags1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {
-            //CountryFlag countryFlag = db.CountryFlags.Find(id);
-            //db.CountryFlags.Remove(countryFlag);
-            //db.SaveChanges();
+            CountryFlag countryFlag = db.CountryFlags.Find(id);
+            db.CountryFlags.Remove(countryFlag);
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
 

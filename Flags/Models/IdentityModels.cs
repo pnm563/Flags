@@ -30,5 +30,6 @@ namespace Flags.Models
             return new ApplicationDbContext();
         }
 
+        public System.Data.Entity.DbSet<Models.CountryFlag> CountryFlags { get; set; }
     }
 }

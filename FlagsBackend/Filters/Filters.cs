@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Helpers;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -17,17 +18,12 @@ namespace FlagsBackend.Filters
         {
             Exception ex = context.Exception;
 
-            string innerExceptions = ex.InnerException == null ? ex.Message : String.Empty;
-            while (ex.InnerException != null)
-            {
-                innerExceptions += $"{ex.Message} ";
-                ex = ex.InnerException;
-            }
+            List<string> exceptionDetail = ExceptionInfo.RecurseInnerExceptions(ex);
 
             APIError aPIError = new APIError()
             {
                 Message = "Exception raised!",
-                MessageDetail = innerExceptions
+                MessageDetail = String.Join("|", exceptionDetail)
             };
 
             string JSONAPIError = JsonConvert.SerializeObject(aPIError);

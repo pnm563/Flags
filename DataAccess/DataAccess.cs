@@ -9,9 +9,15 @@ namespace DataAccess
 {
     public class FlagDataAccess
     {
+
+
         public void AddCountryFlag(CountryFlag countryFlag)
         {
-            throw new Exception("Exception from data access");
+            countryFlag.ID = Guid.NewGuid();
+            db.CountryFlags.Add(countryFlag);
+            db.SaveChanges();
+
         }
+
     }
 }

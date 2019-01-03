@@ -17,7 +17,8 @@ namespace FlagsBackend.Controllers
         // GET: api/CountryFlag
         public IEnumerable<string> Get()
         {
-           return new string[] { "value1", "value3" };
+            throw new Exception("ooo");
+            return new string[] { "value1", "value3" };
         }
 
         // GET: api/CountryFlag/5

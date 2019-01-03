@@ -1,19 +1,16 @@
 ﻿@model System.Web.Mvc.HandleErrorInfo
+@using Common.Helpers;
 
 @{
     ViewBag.Title = "Error";
 }
 
-@{ Exception ex = @Model.Exception; }
-
-@{List<string> exceptionDetail = new List<string>(); }
+@{
+    Exception ex = @Model.Exception;
+}
 
 @{
-    while (ex != null)
-    {
-        exceptionDetail.Add(ex.Message);
-        ex = ex.InnerException;
-    }
+    List<string> exceptionDetail = ExceptionInfo.RecurseInnerExceptions(ex);
 }
 
 <h1 class="text-danger">Error.</h1>
