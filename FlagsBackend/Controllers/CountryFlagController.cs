@@ -27,7 +27,7 @@ namespace FlagsBackend.Controllers
         }
 
         // POST: api/CountryFlag
-        [GenExceptionFilter]
+        [GenAPIExceptionFilter]
         public void Post([FromBody]CountryFlag theCountryFlag)
         {
             FlagLogic flagLogic = new FlagLogic();

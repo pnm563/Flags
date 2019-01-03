@@ -11,7 +11,7 @@ using System.Web.Http.Filters;
 
 namespace FlagsBackend.Filters
 {
-    public class GenExceptionFilterAttribute : ExceptionFilterAttribute
+    public class GenAPIExceptionFilterAttribute : ExceptionFilterAttribute
     {
         public override void OnException(HttpActionExecutedContext context)
         {

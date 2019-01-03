@@ -24,6 +24,7 @@ namespace Flags.Controllers
         public ActionResult Index()
         {
             //return View(db.CountryFlags.ToList());
+            throw new Exception("oooopsy");
             return View();
         }
 
@@ -53,7 +54,7 @@ namespace Flags.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken,ValidateInput(false)]
+        [ValidateAntiForgeryToken, ValidateInput(false)]
         public ActionResult Create([Bind(Include = "ID,CountryCode,Description")] CountryFlag countryFlag)
         {
             if (ModelState.IsValid)
@@ -63,40 +64,22 @@ namespace Flags.Controllers
 
                 HttpContent content = new StringContent(JSONtheCountryFlag, Encoding.UTF8, "application/json");
 
-                try
+                using (HttpClient client = new HttpClient())
                 {
-                    using (HttpClient client = new HttpClient())
-                    {
-                        client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.APIURL]);
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.APIURL]);
 
-                        HttpResponseMessage response = client.PostAsync(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagAPIURN], content).Result;
+                    HttpResponseMessage response = client.PostAsync(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagAPIURN], content).Result;
 
-                        if (!response.IsSuccessStatusCode)
-                        {
-                            APIError aPIError = JsonConvert.DeserializeObject<APIError>(response.Content.ReadAsStringAsync().Result);
-                            aPIError.MessageDetail += $"HTTP response: {response.StatusCode.ToString()}";
-                            throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
-                        }
-                    }
-                    return RedirectToAction("Index");
-                }
-                catch (Exception ex)
-                {
-                    if (ex.Message.Equals("No Content"))
+                    if (!response.IsSuccessStatusCode)
                     {
-                        return RedirectToAction("Index");
-                    }
-                    else
-                    {
-                        string exceptionDetail = ex.InnerException == null ? ex.Message : String.Empty;
-                        while (ex.InnerException != null)
-                        {
-                            exceptionDetail += $"{ex.Message} ";
-                            ex = ex.InnerException;
-                        }
-                        ViewBag.ViewError = String.Format(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagCreateAPIFailed], $"{exceptionDetail}");
+                        APIError aPIError = JsonConvert.DeserializeObject<APIError>(response.Content.ReadAsStringAsync().Result);
+                        aPIError.MessageDetail += $"HTTP response: {response.StatusCode.ToString()}";
+                        throw new Exception($"Message: {aPIError.Message}<br>MessageDetail:{aPIError.MessageDetail}");
                     }
                 }
+                return RedirectToAction("Index");
+
+
             }
             else
             {
