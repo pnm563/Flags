@@ -20,6 +20,8 @@ namespace FlagsBackend.Filters
 
             List<string> exceptionDetail = ExceptionInfo.RecurseInnerExceptions(ex);
 
+            exceptionDetail.Add($"Exception source: {ex.Source}");
+
             APIError aPIError = new APIError()
             {
                 Message = "Exception raised!",
