@@ -17,7 +17,11 @@ namespace DataAccess
             countryFlag.ID = Guid.NewGuid();
             db.CountryFlag.Add(countryFlag);
             db.SaveChanges();
+        }
 
+        public IEnumerable<CountryFlag> GetCountryFlags()
+        {
+            return db.CountryFlag.ToList();
         }
 
     }

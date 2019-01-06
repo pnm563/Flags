@@ -10,10 +10,16 @@ namespace Logic
 {
     public class FlagLogic
     {
+        private FlagDataAccess dataAccess = new FlagDataAccess();
+
         public void AddCountryFlag(CountryFlag countryFlag)
         {
-            FlagDataAccess dataAccess = new FlagDataAccess();
             dataAccess.AddCountryFlag(countryFlag);
+        }
+
+        public IEnumerable<CountryFlag> GetCountryFlags()
+        {
+            return dataAccess.GetCountryFlags();
         }
     }
 }

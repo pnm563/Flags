@@ -23,9 +23,24 @@ namespace Flags.Controllers
         // GET: CountryFlags
         public ActionResult Index()
         {
-            //return View(db.CountryFlags.ToList());
-            throw new Exception("oooopsy");
-            return View();
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.APIURL]);
+
+                HttpResponseMessage theResponse = client.GetAsync(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagAPIURN]).Result;
+
+                if (!theResponse.IsSuccessStatusCode)
+                {
+                    APIError aPIError = JsonConvert.DeserializeObject<APIError>(theResponse.Content.ReadAsStringAsync().Result);
+                    aPIError.MessageDetail += $"HTTP response: {theResponse.StatusCode.ToString()} ";
+                    throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
+                }
+
+                return View(JsonConvert.DeserializeObject<IEnumerable<CountryFlag>>(theResponse.Content.ReadAsStringAsync().Result));
+            }
+
+            
+
         }
 
         //GET: CountryFlags/Details/5

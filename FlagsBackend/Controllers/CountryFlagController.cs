@@ -14,11 +14,12 @@ namespace FlagsBackend.Controllers
 {
     public class CountryFlagController : ApiController
     {
+        private FlagLogic flagLogic = new FlagLogic();
+
         // GET: api/CountryFlag
-        public IEnumerable<string> Get()
+        public IEnumerable<CountryFlag> Get()
         {
-            throw new Exception("ooo");
-            return new string[] { "value1", "value3" };
+            return flagLogic.GetCountryFlags();
         }
 
         // GET: api/CountryFlag/5
@@ -31,7 +32,6 @@ namespace FlagsBackend.Controllers
         [GenAPIExceptionFilter]
         public void Post([FromBody]CountryFlag theCountryFlag)
         {
-            FlagLogic flagLogic = new FlagLogic();
             flagLogic.AddCountryFlag(theCountryFlag);
         }
 
