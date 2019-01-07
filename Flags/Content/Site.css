@@ -1,7 +1,7 @@
 ﻿body {
     padding-top: 50px;
     padding-bottom: 20px;
-    background-color: #1d1075
+    background-color: #acac1a
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -25,7 +25,7 @@ textarea {
 }
 
 .panel-body {
-    background-color: #1ce;
+    background-color: #1CE;
 }
 
 .panel-default > .panel-heading-white {
