@@ -52,6 +52,15 @@
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
     <Compile Include="FlagContext.cs" />
+    <Compile Include="Migrations\201901132118272_InitialCreate.cs" />
+    <Compile Include="Migrations\201901132118272_InitialCreate.Designer.cs">
+      <DependentUpon>201901132118272_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201901132133192_HereComesTheIndexNo.cs" />
+    <Compile Include="Migrations\201901132133192_HereComesTheIndexNo.Designer.cs">
+      <DependentUpon>201901132133192_HereComesTheIndexNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,6 +72,14 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901132118272_InitialCreate.resx">
+      <DependentUpon>201901132118272_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201901132133192_HereComesTheIndexNo.resx">
+      <DependentUpon>201901132133192_HereComesTheIndexNo.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
