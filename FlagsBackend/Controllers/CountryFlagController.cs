@@ -12,11 +12,13 @@ using System.Web.Http;
 
 namespace FlagsBackend.Controllers
 {
+    [GenAPIExceptionFilter]
     public class CountryFlagController : ApiController
     {
         private FlagLogic flagLogic = new FlagLogic();
 
         // GET: api/CountryFlag
+        
         public IEnumerable<CountryFlag> Get()
         {
             return flagLogic.GetCountryFlags();
@@ -29,7 +31,7 @@ namespace FlagsBackend.Controllers
         }
 
         // POST: api/CountryFlag
-        [GenAPIExceptionFilter]
+        
         public void Post([FromBody]CountryFlag theCountryFlag)
         {
             flagLogic.AddCountryFlag(theCountryFlag);
