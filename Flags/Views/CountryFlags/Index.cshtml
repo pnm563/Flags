@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Index";
+    int i = 0;
 }
 
 <h2>Index</h2>
@@ -20,7 +21,9 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
+    @do {
+        
+        foreach (var item in Model.Skip(i*5).Take(2)) {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.CountryCode)
@@ -31,12 +34,18 @@
         <td>
             <img src="~/Images/Flags/@(item.CountryCode).png" />
         </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
-        </td>
     </tr>
-}
 
+        }
+        i++;
+        
+    }     while (i < 3);
 </table>
+
+
+
+@*<td>
+    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+</td>*@
