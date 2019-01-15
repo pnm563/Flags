@@ -37,6 +37,7 @@ namespace Flags.Controllers
                 }
 
                 return View(JsonConvert.DeserializeObject<IEnumerable<IEnumerable<CountryFlag>>>(theResponse.Content.ReadAsStringAsync().Result));
+                
             }
 
             

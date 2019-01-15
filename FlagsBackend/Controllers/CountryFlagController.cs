@@ -33,8 +33,8 @@ namespace FlagsBackend.Controllers
 
         public IEnumerable<IEnumerable<CountryFlag>> GetChunks(int chunkSize)
         {
-            List<CountryFlag> fullList = flagLogic.GetCountryFlags().ToList();
-            return Paginate.splitList(fullList, 3);
+            List<CountryFlag> fullList = flagLogic.GetCountryFlags().OrderBy(x => x.Description).ToList();
+            return Paginate.splitList(fullList, chunkSize);
         }
 
         // POST: api/CountryFlag

@@ -15,7 +15,7 @@ namespace Models
 
         public const string FlagsURN = "/api/CountryFlag";
 
-        public const string FlagsChunkedURN = "/api/CountryFlag/GetChunks?chunkSize=3";
+        public const string FlagsChunkedURN = "/api/CountryFlag/GetChunks?chunkSize=6";
 
     }
 

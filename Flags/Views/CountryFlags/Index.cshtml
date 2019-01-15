@@ -1,26 +1,15 @@
 ﻿@model IEnumerable<IEnumerable<Models.CountryFlag>>
 
-@{
-    ViewBag.Title = "Index";
-    int i = 0;
-}
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
     @foreach (var chunk in Model)
     {
-    <tr>
+    <div class="row">
         @foreach (var chunklet in chunk)
         {
-            <td>@chunklet.CountryCode</td>
+            <div class="col-md-2"><img class="img-responsive" src="~/Images/Flags/@(chunklet.CountryCode).png" /></div>
         }
-    </tr>
+    </div>
     }
-</table>
 
 
 
