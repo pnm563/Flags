@@ -44,6 +44,7 @@
     <Compile Include="APIError.cs" />
     <Compile Include="ConfigurationParams.cs" />
     <Compile Include="Helpers\ExceptionInfo.cs" />
+    <Compile Include="Helpers\Paginate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

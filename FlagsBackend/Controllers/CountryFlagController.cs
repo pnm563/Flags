@@ -1,4 +1,5 @@
 ﻿using Common;
+using Common.Helpers;
 using FlagsBackend.Filters;
 using Logic;
 using Models;
@@ -25,9 +26,15 @@ namespace FlagsBackend.Controllers
         }
 
         // GET: api/CountryFlag/5
-        public string Get(int id)
+        //public string Get(int id)
+        //{
+        //    return "value";
+        //}
+
+        public IEnumerable<IEnumerable<CountryFlag>> GetChunks(int chunkSize)
         {
-            return "value";
+            List<CountryFlag> fullList = flagLogic.GetCountryFlags().ToList();
+            return Paginate.splitList(fullList, 3);
         }
 
         // POST: api/CountryFlag
