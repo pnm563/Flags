@@ -25,9 +25,9 @@ namespace Flags.Controllers
         {
             using (HttpClient client = new HttpClient())
             {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.APIURL]);
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
 
-                HttpResponseMessage theResponse = client.GetAsync(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagAPIURN]).Result;
+                HttpResponseMessage theResponse = client.GetAsync(ConfigurationParams.FlagsChunkedURN).Result;
 
                 if (!theResponse.IsSuccessStatusCode)
                 {
@@ -36,7 +36,7 @@ namespace Flags.Controllers
                     throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
                 }
 
-                return View(JsonConvert.DeserializeObject<IEnumerable<CountryFlag>>(theResponse.Content.ReadAsStringAsync().Result));
+                return View(JsonConvert.DeserializeObject<IEnumerable<IEnumerable<CountryFlag>>>(theResponse.Content.ReadAsStringAsync().Result));
             }
 
             
@@ -81,9 +81,9 @@ namespace Flags.Controllers
 
                 using (HttpClient client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.APIURL]);
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
 
-                    HttpResponseMessage response = client.PostAsync(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagAPIURN], content).Result;
+                    HttpResponseMessage response = client.PostAsync(ConfigurationParams.FlagsURN, content).Result;
 
                     if (!response.IsSuccessStatusCode)
                     {
@@ -98,7 +98,7 @@ namespace Flags.Controllers
             }
             else
             {
-                throw new Exception(ConfigurationManager.AppSettings[ConfigurationParams.CountryFlagCreateFormInvalid]);
+                throw new Exception(ConfigurationManager.AppSettings[ConfigurationParams.WCCountryFlagCreateFormInvalid]);
             }
         }
 

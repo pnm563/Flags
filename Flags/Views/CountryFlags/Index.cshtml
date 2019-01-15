@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Models.CountryFlag>
+﻿@model IEnumerable<IEnumerable<Models.CountryFlag>>
 
 @{
     ViewBag.Title = "Index";
@@ -11,35 +11,15 @@
     @Html.ActionLink("Create New", "Create")
 </p>
 <table class="table">
+    @foreach (var chunk in Model)
+    {
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CountryCode)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
-
-    @do {
-        
-        foreach (var item in Model.Skip(i*5).Take(2)) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CountryCode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            <img src="~/Images/Flags/@(item.CountryCode).png" />
-        </td>
-    </tr>
-
+        @foreach (var chunklet in chunk)
+        {
+            <td>@chunklet.CountryCode</td>
         }
-        i++;
-        
-    }     while (i < 3);
+    </tr>
+    }
 </table>
 
 
