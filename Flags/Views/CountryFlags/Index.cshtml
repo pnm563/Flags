@@ -1,20 +1,28 @@
-﻿@model IEnumerable<IEnumerable<Models.CountryFlag>>
+﻿@using Models
+@model IEnumerable<IEnumerable<CountryFlag>>
 
 
-    @foreach (var chunk in Model)
-    {
+@foreach (IEnumerable<CountryFlag> chunk in Model)
+{
     <div class="row">
-        @foreach (var chunklet in chunk)
+        @foreach (CountryFlag chunklet in chunk)
+        {
+            <div class="col-md-2">@(chunklet.Description)</div>
+        }
+    </div>
+
+    <div class="row">
+        @foreach (CountryFlag chunklet in chunk)
         {
             <div class="col-md-2"><img class="img-responsive" src="~/Images/Flags/@(chunklet.CountryCode).png" /></div>
         }
     </div>
-    }
+}
 
 
 
 @*<td>
-    @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-    @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-    @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-</td>*@
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    </td>*@
