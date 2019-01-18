@@ -24,5 +24,16 @@ namespace DataAccess
             return db.CountryFlag.ToList();
         }
 
+        public int GetMaxCountryFlagIndexNo()
+        {
+            return db.CountryFlag.Max(f => f.IndexNo);
+        }
+
+        public CountryFlag GetCountryFlagByIndexNo(int IndexNo)
+        {
+            return db.CountryFlag.Where(x => x.IndexNo == IndexNo).First();
+        }
+
+
     }
 }
