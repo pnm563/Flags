@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="DataAccess.cs" />
     <Compile Include="FlagContext.cs" />
+    <Compile Include="FlagInitializer.cs" />
     <Compile Include="Migrations\201901132118272_InitialCreate.cs" />
     <Compile Include="Migrations\201901132118272_InitialCreate.Designer.cs">
       <DependentUpon>201901132118272_InitialCreate.cs</DependentUpon>

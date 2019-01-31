@@ -11,21 +11,20 @@ namespace Flags.Tests
         FlagDataAccess dataAccess = new FlagDataAccess();
 
         [TestMethod]
-        public void GetMaxCountryFlagIndexNo()
-        {
-
-            Assert.AreEqual(dataAccess.GetMaxCountryFlagIndexNo(), 199);
-        }
+        public void GetMaxCountryFlagIndexNo() => Assert.AreEqual(dataAccess.GetMaxCountryFlagIndexNo(), 200);
 
         [TestMethod]
-        public void GetCountryFlagsByIndexNo()
-        {
+        public void GetAFCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(57).CountryCode, "AF");
 
-            Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(17).CountryCode, "GY");
-            Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(40).CountryCode, "BD");
-            Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(104).CountryCode, "HR");
+        [TestMethod]
+        public void GetGYCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(44).CountryCode, "GY");
 
-        }
+        [TestMethod]
+        public void GetHRCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(7).CountryCode, "HR");
+
+        [TestMethod]
+        public void GetBDCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(53).CountryCode, "BD");
+
 
 
     }
