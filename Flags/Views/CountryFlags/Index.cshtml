@@ -7,16 +7,19 @@
     <div class="row">
         @foreach (CountryFlag chunklet in chunk)
         {
-            <div class="col-md-2">@(chunklet.Description)</div>
+            <div class="col-md-2">@(chunklet.Description)
+                <img class="img-responsive" src="~/Images/Flags/@(chunklet.CountryCode).png" />
+        </div>
+
         }
     </div>
 
-    <div class="row">
+    @*<div class="row">
         @foreach (CountryFlag chunklet in chunk)
         {
             <div class="col-md-2"><img class="img-responsive" src="~/Images/Flags/@(chunklet.CountryCode).png" /></div>
         }
-    </div>
+    </div>*@
 }
 
 

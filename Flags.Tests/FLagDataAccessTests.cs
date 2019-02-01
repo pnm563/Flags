@@ -11,7 +11,7 @@ namespace Flags.Tests
         FlagDataAccess dataAccess = new FlagDataAccess();
 
         [TestMethod]
-        public void GetMaxCountryFlagIndexNo() => Assert.AreEqual(dataAccess.GetMaxCountryFlagIndexNo(), 200);
+        public void GetMaxCountryFlagIndexNo() => Assert.AreEqual(dataAccess.GetMaxCountryFlagIndexNo(), 199);
 
         [TestMethod]
         public void GetAFCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(57).CountryCode, "AF");
