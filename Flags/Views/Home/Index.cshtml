@@ -2,11 +2,7 @@
     ViewBag.Title = "Home Page";
 }
 <div class="container">
-    <button type="button" id="clickMe">
-        ClickMe
-    </button>
     <button type="button" onclick="location.href='/CountryFlags'">CountryFlags list</button>
-    <button type="button" onclick="location.href='/CountryFlags/Create'">CountryFlags create</button>
     <div class="panel-group">
         <div class="panel panel-default">
 
@@ -27,35 +23,3 @@
     </div>
 </div>
 
-
-<script>
-
-    $('#collapse2').on('hidden.bs.collapse', function () {
-        //$('#flagDisplay').html('<img src="Images/albania.jpg" />');
-        $('#flagDisplay').load("/Flag", function (response, status) {
-            //alert(response, status);
-        });
-        $('#collapse2').collapse('show');
-    });
-   
-    $('#clickMe').click(() => {
-        //if ($('#collapse2').attr('aria-expanded') == 'true') {
-
-        //    $('#collapse2').collapse('hide');
-
-        //} else {
-        //    $('#collapse2').collapse('show');
-        //}
-        $('#flagDisplay1').load("/Flag", function (response, status) {
-            //alert(response, status);
-        });
-
-        $('#flagDisplay2').load("/Flag", function (response, status) {
-            //alert(response, status);
-        });
-
-        $('#flagDisplay3').load("/Flag", function (response, status) {
-            //alert(response, status);
-        });
-    })
-</script>
