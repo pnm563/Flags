@@ -61,6 +61,7 @@ namespace Flags.Controllers
         }
 
         // GET: CountryFlags/Create
+        [Authorize(Roles = "badger")]
         public ActionResult Create()
         {
             return View();
@@ -69,7 +70,7 @@ namespace Flags.Controllers
         // POST: CountryFlags/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost,Authorize(Roles = "badger")]
         [ValidateAntiForgeryToken, ValidateInput(false)]
         public ActionResult Create([Bind(Include = "ID,CountryCode,Description")] CountryFlag countryFlag)
         {
@@ -104,6 +105,7 @@ namespace Flags.Controllers
         }
 
         // GET: CountryFlags/Edit/5
+        [Authorize(Roles = "badger")]
         public ActionResult Edit(Guid? id)
         {
             if (id == null)
@@ -122,7 +124,7 @@ namespace Flags.Controllers
         // POST: CountryFlags/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+        [HttpPost,Authorize(Roles = "badger")]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "ID,CountryCode,Description")] CountryFlag countryFlag)
         {
@@ -136,6 +138,7 @@ namespace Flags.Controllers
         }
 
         // GET: CountryFlags/Delete/5
+        [Authorize(Roles = "badger")]
         public ActionResult Delete(Guid? id)
         {
             if (id == null)
@@ -152,7 +155,7 @@ namespace Flags.Controllers
         }
 
         // POST: CountryFlags/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost, Authorize(Roles = "badger"), ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(Guid id)
         {

@@ -39,20 +39,20 @@ namespace FlagsBackend.Controllers
 
         // POST: api/CountryFlag
         
-        public void Post([FromBody]CountryFlag theCountryFlag)
-        {
-            flagLogic.AddCountryFlag(theCountryFlag);
-        }
+        //public void Post([FromBody]CountryFlag theCountryFlag)
+        //{
+        //    flagLogic.AddCountryFlag(theCountryFlag);
+        //}
 
-        // PUT: api/CountryFlag/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
+        //// PUT: api/CountryFlag/5
+        //public void Put(int id, [FromBody]string value)
+        //{
+        //}
 
-        // DELETE: api/CountryFlag/5
-        public void Delete(int id)
-        {
-        }
+        //// DELETE: api/CountryFlag/5
+        //public void Delete(int id)
+        //{
+        //}
 
     }
 }
