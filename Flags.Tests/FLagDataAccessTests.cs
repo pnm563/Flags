@@ -14,18 +14,23 @@ namespace Flags.Tests
         public void GetMaxCountryFlagIndexNo() => Assert.AreEqual(dataAccess.GetMaxCountryFlagIndexNo(), 199);
 
         [TestMethod]
-        public void GetAFCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(57).CountryCode, "AF");
+        public void GetAFCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(57).CountryCode, "PW");
 
         [TestMethod]
-        public void GetGYCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(44).CountryCode, "GY");
+        public void GetGYCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(44).CountryCode, "TD");
 
         [TestMethod]
-        public void GetHRCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(7).CountryCode, "HR");
+        public void GetHRCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(7).CountryCode, "KN");
 
         [TestMethod]
-        public void GetBDCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(53).CountryCode, "BD");
+        public void GetBDCountryFlag() => Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(53).CountryCode, "RU");
 
-
+        [TestMethod]
+        public void MultiThing()
+        {
+            Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(53).CountryCode, "RU");
+            Assert.AreEqual(dataAccess.GetCountryFlagByIndexNo(51).CountryCode, "RU");
+        }
 
     }
 }

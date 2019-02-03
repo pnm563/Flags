@@ -2,25 +2,26 @@
 @model IEnumerable<IEnumerable<CountryFlag>>
 
 
-@foreach (IEnumerable<CountryFlag> chunk in Model)
-{
-    <div class="row">
-        @foreach (CountryFlag chunklet in chunk)
-        {
-            <div class="col-md-2">@(chunklet.Description)
-                <img class="img-responsive" src="~/Images/Flags/@(chunklet.CountryCode).png" />
-        </div>
 
-        }
+
+<div class="row">
+    @foreach (CountryFlag chunklet in Model.First())
+    {
+        <div class="col-sm-4">
+            @(chunklet.Description)
+        <img  src="~/Images/Flags/@(chunklet.CountryCode).png" />
     </div>
 
-    @*<div class="row">
+}
+</div>
+
+@*<div class="row">
         @foreach (CountryFlag chunklet in chunk)
         {
             <div class="col-md-2"><img class="img-responsive" src="~/Images/Flags/@(chunklet.CountryCode).png" /></div>
         }
     </div>*@
-}
+
 
 
 
