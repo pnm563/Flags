@@ -37,8 +37,14 @@ namespace FlagsBackend.Controllers
             return Paginate.splitList(fullList, chunkSize);
         }
 
+        public IEnumerable<CountryFlag> GetRandomCountryFlags(int quantity)
+        {
+            return flagLogic.GetRandomCountryFlags(3);
+        }
+
+
         // POST: api/CountryFlag
-        
+
         //public void Post([FromBody]CountryFlag theCountryFlag)
         //{
         //    flagLogic.AddCountryFlag(theCountryFlag);

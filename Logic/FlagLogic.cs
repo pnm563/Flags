@@ -21,5 +21,24 @@ namespace Logic
         {
             return dataAccess.GetCountryFlags();
         }
+
+        public IEnumerable<CountryFlag> GetRandomCountryFlags(int quantity)
+        {
+            int maxCountryFlagIndexNo = dataAccess.GetMaxCountryFlagIndexNo();
+            List<CountryFlag> randomCountryFlags = new List<CountryFlag>();
+
+            Random random = new Random();
+
+            for (int i = 1; i <= quantity; i++)
+            {
+                randomCountryFlags.Add(
+                    dataAccess.GetCountryFlagByIndexNo(
+                        random.Next(1, maxCountryFlagIndexNo + 1)
+                    )
+                );
+            }
+
+            return randomCountryFlags;
+        }
     }
 }
