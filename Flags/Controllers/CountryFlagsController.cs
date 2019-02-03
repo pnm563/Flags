@@ -27,7 +27,7 @@ namespace Flags.Controllers
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
 
-                HttpResponseMessage theResponse = client.GetAsync(ConfigurationParams.FlagsChunkedURN).Result;
+                HttpResponseMessage theResponse = client.GetAsync(ConfigurationParams.CountryFlagsRandomURN).Result;
 
                 if (!theResponse.IsSuccessStatusCode)
                 {
@@ -36,7 +36,7 @@ namespace Flags.Controllers
                     throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
                 }
 
-                return View(JsonConvert.DeserializeObject<IEnumerable<IEnumerable<CountryFlag>>>(theResponse.Content.ReadAsStringAsync().Result));
+                return View(JsonConvert.DeserializeObject<IEnumerable<CountryFlag>>(theResponse.Content.ReadAsStringAsync().Result));
                 
             }
 
@@ -85,7 +85,7 @@ namespace Flags.Controllers
                 {
                     client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
 
-                    HttpResponseMessage response = client.PostAsync(ConfigurationParams.FlagsURN, content).Result;
+                    HttpResponseMessage response = client.PostAsync(ConfigurationParams.CountryFlagsURN, content).Result;
 
                     if (!response.IsSuccessStatusCode)
                     {

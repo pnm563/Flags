@@ -13,9 +13,11 @@ namespace Models
 
         public const string WCAPIURL = "APIURL";
 
-        public const string FlagsURN = "/api/CountryFlag";
+        public const string CountryFlagsURN = "/api/CountryFlag";
 
-        public const string FlagsChunkedURN = "/api/CountryFlag/GetChunks?chunkSize=3";
+        public const string CountryFlagsChunkedURN = "/api/CountryFlag/GetChunks?chunkSize=3";
+
+        public const string CountryFlagsRandomURN = "/api/CountryFlag/GetRandomCountryFlags?quantity=3";
 
     }
 

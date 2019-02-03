@@ -1,11 +1,11 @@
 ﻿@using Models
-@model IEnumerable<IEnumerable<CountryFlag>>
+@model IEnumerable<CountryFlag>
 
 
 
 
 <div class="row">
-    @foreach (CountryFlag chunklet in Model.First())
+    @foreach (CountryFlag chunklet in Model)
     {
         <div class="col-sm-4">
             @(chunklet.Description)
