@@ -21,6 +21,7 @@ namespace Flags.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: CountryFlags
+        [Authorize]
         public ActionResult Index()
         {
             using (HttpClient client = new HttpClient())

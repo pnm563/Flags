@@ -19,4 +19,5 @@ namespace Models
     {
         public string CountryCode { get; set; }
     }
+
 }
