@@ -19,6 +19,13 @@ namespace DataAccess
             db.SaveChanges();
         }
 
+        public void AddQuestion(Question question)
+        {
+            question.ID = Guid.NewGuid();
+            db.Question.Add(question);
+            db.SaveChanges();
+        }
+
         public IEnumerable<CountryFlag> GetCountryFlags()
         {
             return db.CountryFlag.ToList();

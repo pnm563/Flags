@@ -12,9 +12,26 @@ namespace Logic
     {
         private FlagDataAccess dataAccess = new FlagDataAccess();
 
-        public void AddCountryFlag(CountryFlag countryFlag)
+        public void AddCountryFlag(CountryFlag countryFlag) => dataAccess.AddCountryFlag(countryFlag);
+        
+        public Question GetQuestion(Flag flag, Guid aspNetUserID)
         {
-            dataAccess.AddCountryFlag(countryFlag);
+            List<Flag> flags = new List<Flag>
+            {
+                flag
+            };
+
+            flags.AddRange(GetRandomCountryFlags(2));
+
+            Question Q = new Question()
+            {
+                AspNetUserID = aspNetUserID,
+                TimeStamp = DateTime.Now,
+                FlagChoices = flags,
+                CorrectAnswer = flag.ID
+            };
+            dataAccess.AddQuestion(Q);
+            return Q;
         }
 
         public IEnumerable<CountryFlag> GetCountryFlags()
@@ -40,5 +57,6 @@ namespace Logic
 
             return randomCountryFlags;
         }
+
     }
 }

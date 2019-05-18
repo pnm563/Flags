@@ -30,19 +30,12 @@ namespace FlagsBackend.Controllers
         //{
         //    return "value";
         //}
-
-        public IEnumerable<IEnumerable<CountryFlag>> GetChunks(int chunkSize)
-        {
-            List<CountryFlag> fullList = flagLogic.GetCountryFlags().OrderBy(x => x.Description).ToList();
-            return Paginate.splitList(fullList, chunkSize);
-        }
+           
 
         public IEnumerable<CountryFlag> GetRandomCountryFlags(int quantity)
         {
-            return flagLogic.GetRandomCountryFlags(3);
+            return flagLogic.GetRandomCountryFlags(quantity);
         }
-
-
 
         // POST: api/CountryFlag
 

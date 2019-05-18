@@ -203,6 +203,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\QuestionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -469,6 +470,7 @@
     <Content Include="Views\CountryFlags\Details.cshtml" />
     <Content Include="Views\CountryFlags\Edit.cshtml" />
     <Content Include="Views\CountryFlags\Index.cshtml" />
+    <Content Include="Views\CountryFlags\GetAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

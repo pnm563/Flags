@@ -14,10 +14,5 @@ namespace Models
         public Guid AspNetUserID { get; set; }
         public Guid UserAnswer { get; set; }
         public Guid CorrectAnswer { get; set; }
-        
-
     }
-
-
- 
 }

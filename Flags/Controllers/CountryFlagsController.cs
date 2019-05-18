@@ -10,6 +10,7 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 using Common;
+using Common.Helpers;
 using Flags.Models;
 using Models;
 using Newtonsoft.Json;
@@ -44,6 +45,35 @@ namespace Flags.Controllers
             
 
         }
+
+        [Authorize]
+        public ActionResult GetAll()
+        {
+            using (HttpClient client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
+
+                HttpResponseMessage theResponse = client.GetAsync(ConfigurationParams.CountryFlagsURN).Result;
+
+                if (!theResponse.IsSuccessStatusCode)
+                {
+                    APIError aPIError = JsonConvert.DeserializeObject<APIError>(theResponse.Content.ReadAsStringAsync().Result);
+                    aPIError.MessageDetail += $"HTTP response: {theResponse.StatusCode.ToString()} ";
+                    throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
+                }
+
+                List<CountryFlag> fullList = JsonConvert.DeserializeObject<IEnumerable<CountryFlag>>(theResponse.Content.ReadAsStringAsync().Result).OrderBy(x => x.Description).ToList();
+
+                IEnumerable<IEnumerable<CountryFlag>> thing = Paginate.splitList(fullList, 3);
+
+                return View(thing);
+
+            }
+
+
+
+        }
+
 
         //GET: CountryFlags/Details/5
         public ActionResult Details(Guid? id)

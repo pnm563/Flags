@@ -11,5 +11,6 @@ namespace DataAccess
     public class FlagContext : DbContext
     {
         public DbSet<CountryFlag> CountryFlag { get; set; }
+        public DbSet<Question> Question { get; set; }
     }
 }
