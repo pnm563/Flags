@@ -1,0 +1,28 @@
+﻿@using Models
+@model IEnumerable<IEnumerable<CountryFlag>>
+
+
+
+@foreach (IEnumerable<CountryFlag> row in Model)
+{
+<div class="row">
+    @foreach (CountryFlag chunklet in row)
+    {
+        <div class="col-md-4">
+            @(chunklet.Description)
+            
+                <img class="flagImg" src="~/Images/Flags/@(chunklet.CountryCode).png" />
+    </div>
+    }
+    
+</div>
+}
+
+
+
+
+@*<td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+    </td>*@
