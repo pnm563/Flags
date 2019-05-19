@@ -11,5 +11,6 @@ namespace Flags.Models
         public Guid ID { get; set; }
         public IEnumerable<Flag> FlagChoices { get; set; }
         public Guid UserAnswer { get; set; }
+        public string QuestionText { get; set; }
     }
 }

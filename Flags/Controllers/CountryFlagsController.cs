@@ -14,6 +14,7 @@ using Common.Helpers;
 using Flags.Models;
 using Models;
 using Newtonsoft.Json;
+using Microsoft.AspNet.Identity;
 
 namespace Flags.Controllers
 {
@@ -32,7 +33,7 @@ namespace Flags.Controllers
             {
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
 
-                HttpResponseMessage theResponse = client.GetAsync(String.Format(ConfigurationParams.CountryFlagQuestionURN,Guid.NewGuid().ToString())).Result;
+                HttpResponseMessage theResponse = client.GetAsync(String.Format(ConfigurationParams.CountryFlagQuestionURN,User.Identity.GetUserId())).Result;
 
                 if (!theResponse.IsSuccessStatusCode)
                 {
@@ -41,7 +42,17 @@ namespace Flags.Controllers
                     throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
                 }
 
-                return View(JsonConvert.DeserializeObject<Question>(theResponse.Content.ReadAsStringAsync().Result));
+                Question Q = JsonConvert.DeserializeObject<Question>(theResponse.Content.ReadAsStringAsync().Result);
+
+                QuestionViewModel questionViewModel = new QuestionViewModel()
+                {
+                    ID = Q.ID,
+                    QuestionText = Q.QuestionText,
+                    FlagChoices = Q.FlagChoices
+
+                };
+
+                return View(questionViewModel);
                 
             }
 
