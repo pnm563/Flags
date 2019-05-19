@@ -19,23 +19,21 @@ namespace FlagsBackend.Controllers
         private FlagLogic flagLogic = new FlagLogic();
 
         // GET: api/CountryFlag
-        
-        public IEnumerable<CountryFlag> Get()
-        {
-            return flagLogic.GetCountryFlags();
-        }
+
+        public string Get() => "Not Implemented";
+
+        public IEnumerable<CountryFlag> GetAll(int all) => flagLogic.GetCountryFlags();
 
         // GET: api/CountryFlag/5
         //public string Get(int id)
         //{
         //    return "value";
         //}
-           
 
-        public IEnumerable<CountryFlag> GetRandomCountryFlags(int quantity)
-        {
-            return flagLogic.GetRandomCountryFlags(quantity);
-        }
+
+        public IEnumerable<CountryFlag> GetRandomCountryFlags(int quantity) => flagLogic.GetRandomCountryFlags(quantity);
+
+        public Question GetQuestion(Guid aspNetUserId) => flagLogic.GetQuestion(aspNetUserId);
 
         // POST: api/CountryFlag
 

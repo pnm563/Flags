@@ -15,9 +15,11 @@ namespace Models
 
         public const string CountryFlagsURN = "/api/CountryFlag";
 
-        public const string CountryFlagsChunkedURN = "/api/CountryFlag/GetChunks?chunkSize=3";
+        public const string CountryFlagsAllURN = CountryFlagsURN + "/GetAll?all=1";
 
-        public const string CountryFlagsRandomURN = "/api/CountryFlag/GetRandomCountryFlags?quantity=3";
+        public const string CountryFlagsRandomURN = CountryFlagsURN + "/GetRandomCountryFlags?quantity=3";
+
+        public const string CountryFlagQuestionURN = CountryFlagsURN + "/GetQuestion?aspNetUserID={0}";
 
     }
 

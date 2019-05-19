@@ -1,33 +1,7 @@
 ﻿@using Models
-@model IEnumerable<CountryFlag>
+@model Question
 
 
 
 
-<div class="row">
-    @foreach (CountryFlag chunklet in Model)
-    {
-        <div class="col-md-4">
-            @(chunklet.Description)
-            
-                <img class="flagImg" src="~/Images/Flags/@(chunklet.CountryCode).png" />
-    </div>
-
-}
-</div>
-
-@*<div class="row">
-        @foreach (CountryFlag chunklet in chunk)
-        {
-            <div class="col-md-2"><img class="img-responsive" src="~/Images/Flags/@(chunklet.CountryCode).png" /></div>
-        }
-    </div>*@
-
-
-
-
-@*<td>
-        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
-        @Html.ActionLink("Details", "Details", new { id = item.ID }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
-    </td>*@
+@ObjectInfo.Print(Model)

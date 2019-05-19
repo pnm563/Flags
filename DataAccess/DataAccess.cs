@@ -14,14 +14,12 @@ namespace DataAccess
 
         public void AddCountryFlag(CountryFlag countryFlag)
         {
-            countryFlag.ID = Guid.NewGuid();
             db.CountryFlag.Add(countryFlag);
             db.SaveChanges();
         }
 
         public void AddQuestion(Question question)
         {
-            question.ID = Guid.NewGuid();
             db.Question.Add(question);
             db.SaveChanges();
         }

@@ -12,23 +12,29 @@ namespace Logic
     {
         private FlagDataAccess dataAccess = new FlagDataAccess();
 
-        public void AddCountryFlag(CountryFlag countryFlag) => dataAccess.AddCountryFlag(countryFlag);
-        
-        public Question GetQuestion(Flag flag, Guid aspNetUserID)
+        public void AddCountryFlag(CountryFlag countryFlag)
         {
-            List<Flag> flags = new List<Flag>
-            {
-                flag
-            };
+            countryFlag.ID = Guid.NewGuid();
+            dataAccess.AddCountryFlag(countryFlag);
+        } 
+        
+        public Question GetQuestion(Guid aspNetUserID)
+        {
+            List<Flag> flags = new List<Flag>();
 
+            CountryFlag firstFlag = GetRandomCountryFlags(1).First();
+
+            flags.Add(firstFlag);
             flags.AddRange(GetRandomCountryFlags(2));
 
             Question Q = new Question()
             {
+                ID = Guid.NewGuid(),
                 AspNetUserID = aspNetUserID,
                 TimeStamp = DateTime.Now,
                 FlagChoices = flags,
-                CorrectAnswer = flag.ID
+                CorrectAnswer = firstFlag.ID,
+                QuestionText = firstFlag.Description
             };
             dataAccess.AddQuestion(Q);
             return Q;

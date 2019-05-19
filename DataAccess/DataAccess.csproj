@@ -61,6 +61,10 @@
     <Compile Include="Migrations\201901132133192_HereComesTheIndexNo.Designer.cs">
       <DependentUpon>201901132133192_HereComesTheIndexNo.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905191706288_QuestionClass.cs" />
+    <Compile Include="Migrations\201905191706288_QuestionClass.Designer.cs">
+      <DependentUpon>201905191706288_QuestionClass.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -80,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201901132133192_HereComesTheIndexNo.resx">
       <DependentUpon>201901132133192_HereComesTheIndexNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905191706288_QuestionClass.resx">
+      <DependentUpon>201905191706288_QuestionClass.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
