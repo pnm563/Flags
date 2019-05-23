@@ -1,0 +1,17 @@
+﻿@using Flags.Models
+@using Models
+@model QuestionViewModel
+
+
+@using (Html.BeginForm())
+{
+
+    @ObjectInfo.Print(Model)
+
+    foreach (Flag flag in Model.FlagChoices)
+    {
+        @flag.Description
+    }
+
+
+}
