@@ -12,9 +12,9 @@ namespace DataAccess
     {
         FlagContext db = new FlagContext();
 
-        public void AddCountryFlag(CountryFlag countryFlag)
+        public void AddFlag(Flag Flag)
         {
-            db.CountryFlag.Add(countryFlag);
+            db.Flag.Add(Flag);
             db.SaveChanges();
         }
 
@@ -24,19 +24,19 @@ namespace DataAccess
             db.SaveChanges();
         }
 
-        public IEnumerable<CountryFlag> GetCountryFlags()
+        public IEnumerable<Flag> GetFlags()
         {
-            return db.CountryFlag.ToList();
+            return db.Flag.ToList();
         }
 
-        public int GetMaxCountryFlagIndexNo()
+        public int GetMaxFlagIndexNo()
         {
-            return db.CountryFlag.Max(f => f.IndexNo);
+            return db.Flag.Max(f => f.IndexNo);
         }
 
-        public CountryFlag GetCountryFlagByIndexNo(int IndexNo)
+        public Flag GetFlagByIndexNo(int IndexNo)
         {
-            return db.CountryFlag.Where(x => x.IndexNo == IndexNo).First();
+            return db.Flag.Where(x => x.IndexNo == IndexNo).First();
         }
 
 

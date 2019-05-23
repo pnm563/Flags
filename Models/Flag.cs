@@ -12,12 +12,14 @@ namespace Models
         public Guid ID { get; set; }
         public string Description { get; set; }
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int IndexNo {get; set;}
+        public int IndexNo { get; set; }
+        public string ImageFile { get; set; }
+        public FlagType FlagType {get; set;}
     }
 
-    public class CountryFlag : Flag
+    public enum FlagType
     {
-        public string CountryCode { get; set; }
+        CountryFlag
     }
 
 }

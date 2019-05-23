@@ -195,7 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\CountryFlagsController.cs" />
+    <Compile Include="Controllers\FlagsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -465,12 +465,12 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\CountryFlags\Create.cshtml" />
-    <Content Include="Views\CountryFlags\Delete.cshtml" />
-    <Content Include="Views\CountryFlags\Details.cshtml" />
-    <Content Include="Views\CountryFlags\Edit.cshtml" />
-    <Content Include="Views\CountryFlags\Index.cshtml" />
-    <Content Include="Views\CountryFlags\GetAll.cshtml" />
+    <Content Include="Views\Flags\Create.cshtml" />
+    <Content Include="Views\Flags\Delete.cshtml" />
+    <Content Include="Views\Flags\Details.cshtml" />
+    <Content Include="Views\Flags\Edit.cshtml" />
+    <Content Include="Views\Flags\Index.cshtml" />
+    <Content Include="Views\Flags\GetAll.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

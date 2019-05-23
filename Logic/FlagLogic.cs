@@ -12,20 +12,20 @@ namespace Logic
     {
         private FlagDataAccess dataAccess = new FlagDataAccess();
 
-        public void AddCountryFlag(CountryFlag countryFlag)
+        public void AddFlag(Flag Flag)
         {
-            countryFlag.ID = Guid.NewGuid();
-            dataAccess.AddCountryFlag(countryFlag);
+            Flag.ID = Guid.NewGuid();
+            dataAccess.AddFlag(Flag);
         } 
         
         public Question GetQuestion(Guid aspNetUserID)
         {
             List<Flag> flags = new List<Flag>();
 
-            CountryFlag firstFlag = GetRandomCountryFlags(1).First();
+            Flag firstFlag = GetRandomFlags(1).First();
 
             flags.Add(firstFlag);
-            flags.AddRange(GetRandomCountryFlags(2));
+            flags.AddRange(GetRandomFlags(2));
 
             Question Q = new Question()
             {
@@ -40,28 +40,28 @@ namespace Logic
             return Q;
         }
 
-        public IEnumerable<CountryFlag> GetCountryFlags()
+        public IEnumerable<Flag> GetFlags()
         {
-            return dataAccess.GetCountryFlags();
+            return dataAccess.GetFlags();
         }
 
-        public IEnumerable<CountryFlag> GetRandomCountryFlags(int quantity)
+        public IEnumerable<Flag> GetRandomFlags(int quantity)
         {
-            int maxCountryFlagIndexNo = dataAccess.GetMaxCountryFlagIndexNo();
-            List<CountryFlag> randomCountryFlags = new List<CountryFlag>();
+            int maxFlagIndexNo = dataAccess.GetMaxFlagIndexNo();
+            List<Flag> randomFlags = new List<Flag>();
 
             Random random = new Random();
 
             for (int i = 1; i <= quantity; i++)
             {
-                randomCountryFlags.Add(
-                    dataAccess.GetCountryFlagByIndexNo(
-                        random.Next(1, maxCountryFlagIndexNo + 1)
+                randomFlags.Add(
+                    dataAccess.GetFlagByIndexNo(
+                        random.Next(1, maxFlagIndexNo + 1)
                     )
                 );
             }
 
-            return randomCountryFlags;
+            return randomFlags;
         }
 
     }
