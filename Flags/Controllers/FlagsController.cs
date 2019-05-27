@@ -29,62 +29,39 @@ namespace Flags.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
 
-                HttpResponseMessage theResponse = client.GetAsync(String.Format(ConfigurationParams.FlagQuestionURN,User.Identity.GetUserId())).Result;
+            Dictionary<string, string> inbound = new Dictionary<string, string>();
+            inbound["aspNetUserID"] = User.Identity.GetUserId();
 
-                if (!theResponse.IsSuccessStatusCode)
-                {
-                    APIError aPIError = JsonConvert.DeserializeObject<APIError>(theResponse.Content.ReadAsStringAsync().Result);
-                    aPIError.MessageDetail += $"HTTP response: {theResponse.StatusCode.ToString()} ";
-                    throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
-                }
+            QuestionViewModel QVM = FlagsAPIClient.GetAsync<QuestionViewModel>(
+                ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURLScheme],
+                ConfigurationManager.AppSettings[ConfigurationParams.WCAPIHost],
+                ConfigurationParams.FlagQuestionURN,
+                inbound
+            );
 
-                Question Q = JsonConvert.DeserializeObject<Question>(theResponse.Content.ReadAsStringAsync().Result);
-
-                QuestionViewModel questionViewModel = new QuestionViewModel()
-                {
-                    ID = Q.ID,
-                    QuestionText = Q.QuestionText,
-                    FlagChoices = Q.FlagChoices
-
-                };
-
-                return View(questionViewModel);
-                
-            }
-
-            
+            return View(QVM);
 
         }
 
         [Authorize]
         public ActionResult GetAll()
         {
-            using (HttpClient client = new HttpClient())
-            {
-                client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
+            Dictionary<string, string> inbound = new Dictionary<string, string>();
+            inbound["all"] = "3";
 
-                HttpResponseMessage theResponse = client.GetAsync(ConfigurationParams.FlagsAllURN).Result;
 
-                if (!theResponse.IsSuccessStatusCode)
-                {
-                    APIError aPIError = JsonConvert.DeserializeObject<APIError>(theResponse.Content.ReadAsStringAsync().Result);
-                    aPIError.MessageDetail += $"HTTP response: {theResponse.StatusCode.ToString()} ";
-                    throw new Exception($"Message: {aPIError.Message} MessageDetail:{aPIError.MessageDetail}");
-                }
+            List<Flag> fullList = FlagsAPIClient.GetAsync<List<Flag>>(
+                ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURLScheme],
+                ConfigurationManager.AppSettings[ConfigurationParams.WCAPIHost],
+                ConfigurationParams.FlagsAllURN,
+                inbound
 
-                List<Flag> fullList = JsonConvert.DeserializeObject<IEnumerable<Flag>>(theResponse.Content.ReadAsStringAsync().Result).OrderBy(x => x.Description).ToList();
+                ).OrderBy(x => x.Description).ToList();
 
                 IEnumerable<IEnumerable<Flag>> thing = Paginate.splitList(fullList, 3);
 
                 return View(thing);
-
-            }
-
-
 
         }
 
@@ -128,7 +105,7 @@ namespace Flags.Controllers
 
                 using (HttpClient client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURL]);
+                    client.BaseAddress = new Uri(ConfigurationManager.AppSettings[ConfigurationParams.WCAPIHost]);
 
                     HttpResponseMessage response = client.PostAsync(ConfigurationParams.FlagsURN, content).Result;
 

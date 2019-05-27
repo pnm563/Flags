@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web;
 using DataAccess;
 using Logic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -32,5 +33,17 @@ namespace Flags.Tests
             Assert.AreEqual(dataAccess.GetFlagByIndexNo(51).ImageFile, "RU");
         }
 
+        [TestMethod]
+        public void UriBuilderThingy()
+        {
+            var builder = new UriBuilder("http://example.com");
+            builder.Port = -1;
+            var query = HttpUtility.ParseQueryString(builder.Query);
+            query["foo"] = "bar<>&-baz";
+            query["bar"] = "bazinga";
+            builder.Query = query.ToString();
+            builder.Path = "/api/Flag";
+            string url = builder.ToString();
+        }
     }
 }
