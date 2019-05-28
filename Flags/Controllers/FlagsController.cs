@@ -66,6 +66,7 @@ namespace Flags.Controllers
         }
 
 
+
         //GET: Flags/Details/5
         public ActionResult Details(Guid? id)
         {

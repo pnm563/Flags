@@ -9,10 +9,10 @@
     <h1>Please choose flag for @Model.QuestionText</h1>
 
     <div class="row">
-        @foreach (Flag flag in Model.FlagChoices)
+        @foreach (FlagViewModel flag in Model.FlagChoices)
         {
         <div class="col-md-4">
-            <img class="flagImg" src="~/Images/Flags/@(flag.ImageFile).png" />
+            <img class="flagImg" src="~/Images/FlagsGuid/@(flag.ID).png" />
         </div>
 
         }
