@@ -3,8 +3,6 @@
 @model QuestionViewModel
 
 
-@using (Html.BeginForm())
-{
 
     <h1>Please choose flag for @Model.QuestionText</h1>
 
@@ -12,12 +10,21 @@
         @foreach (FlagViewModel flag in Model.FlagChoices)
         {
         <div class="col-md-4">
-            <img class="flagImg" src="~/Images/FlagsGuid/@(flag.ID).png" />
+            <img id="@(flag.ID)" class="flagImg" src="~/Images/FlagsGuid/@(flag.ID).png" />
         </div>
 
         }
     </div>
 
-}
 
-@ObjectInfo.Print(Model)
+
+    <script>
+    @foreach (FlagViewModel flag in Model.FlagChoices)
+    {
+
+        @:$('#@flag.ID').click(function () { console.log("@flag.ID") });
+
+    }
+
+    </script>
+
