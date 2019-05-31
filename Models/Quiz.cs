@@ -16,4 +16,10 @@ namespace Models
         public Guid CorrectAnswer { get; set; }
         public string QuestionText { get; set; }
     }
+    
+    public class Answer
+    {
+        public Guid QuestionID { get; set; }
+        public Guid UserAnswer { get; set; }
+    }
 }

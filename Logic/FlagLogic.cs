@@ -10,12 +10,12 @@ namespace Logic
 {
     public class FlagLogic
     {
-        private FlagDataAccess dataAccess = new FlagDataAccess();
+        private FlagDataAccess _dataAccess = new FlagDataAccess();
 
         public void AddFlag(Flag Flag)
         {
             Flag.ID = Guid.NewGuid();
-            dataAccess.AddFlag(Flag);
+            _dataAccess.AddFlag(Flag);
         } 
         
         public Question GetQuestion(Guid aspNetUserID)
@@ -36,18 +36,18 @@ namespace Logic
                 CorrectAnswer = firstFlag.ID,
                 QuestionText = firstFlag.Description
             };
-            dataAccess.AddQuestion(Q);
+            _dataAccess.AddQuestion(Q);
             return Q;
         }
 
         public IEnumerable<Flag> GetFlags()
         {
-            return dataAccess.GetFlags();
+            return _dataAccess.GetFlags();
         }
 
         public IEnumerable<Flag> GetRandomFlags(int quantity)
         {
-            int maxFlagIndexNo = dataAccess.GetMaxFlagIndexNo();
+            int maxFlagIndexNo = _dataAccess.GetMaxFlagIndexNo();
             List<Flag> randomFlags = new List<Flag>();
 
             Random random = new Random();
@@ -55,13 +55,26 @@ namespace Logic
             for (int i = 1; i <= quantity; i++)
             {
                 randomFlags.Add(
-                    dataAccess.GetFlagByIndexNo(
+                    _dataAccess.GetFlagByIndexNo(
                         random.Next(1, maxFlagIndexNo + 1)
                     )
                 );
             }
 
             return randomFlags;
+        }
+
+        public bool SubmitAnswer(Guid questionID,Guid userAnswer)
+        {
+            Answer A = new Answer()
+            {
+                QuestionID = questionID,
+                UserAnswer = userAnswer
+            };
+
+            Question Q = _dataAccess.SubmitAnswer(A);
+
+            return Q.UserAnswer == Q.CorrectAnswer;
         }
 
     }

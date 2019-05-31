@@ -39,6 +39,14 @@ namespace DataAccess
             return db.Flag.Where(x => x.IndexNo == IndexNo).First();
         }
 
+        public Question SubmitAnswer(Answer A)
+        {
 
+            Question Q = db.Question.FirstOrDefault(q => q.ID == A.QuestionID);
+            Q.UserAnswer = A.UserAnswer;
+            db.SaveChanges();
+
+            return Q;
+        }
     }
 }

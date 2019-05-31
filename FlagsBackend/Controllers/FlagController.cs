@@ -16,13 +16,13 @@ namespace FlagsBackend.Controllers
     [GenAPIExceptionFilter]
     public class FlagController : ApiController
     {
-        private FlagLogic flagLogic = new FlagLogic();
+        private FlagLogic _flagLogic = new FlagLogic();
 
         // GET: api/CountryFlag
 
         public string Get() => "Not Implemented";
 
-        public IEnumerable<Flag> GetAll(int all) => flagLogic.GetFlags();
+        public IEnumerable<Flag> GetAll(int all) => _flagLogic.GetFlags();
 
         // GET: api/CountryFlag/5
         //public string Get(int id)
@@ -31,9 +31,12 @@ namespace FlagsBackend.Controllers
         //}
 
 
-        public IEnumerable<Flag> GetRandomFlags(int quantity) => flagLogic.GetRandomFlags(quantity);
+        public IEnumerable<Flag> GetRandomFlags(int quantity) => _flagLogic.GetRandomFlags(quantity);
 
-        public Question GetQuestion(Guid aspNetUserId) => flagLogic.GetQuestion(aspNetUserId);
+        public Question GetQuestion(Guid aspNetUserId) => _flagLogic.GetQuestion(aspNetUserId);
+
+        [HttpGet]
+        public bool SubmitAnswer(Guid questionID,Guid userAnswer) => _flagLogic.SubmitAnswer(questionID, userAnswer);
 
         // POST: api/CountryFlag
 

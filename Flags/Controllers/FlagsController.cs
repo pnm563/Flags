@@ -65,7 +65,10 @@ namespace Flags.Controllers
 
         }
 
-
+        public bool SubmitAnswer(Guid questionID,Guid answer)
+        {
+            return true;
+        }
 
         //GET: Flags/Details/5
         public ActionResult Details(Guid? id)
