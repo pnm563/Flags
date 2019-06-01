@@ -47,8 +47,10 @@ namespace Flags.Controllers
         [Authorize]
         public ActionResult GetAll()
         {
-            Dictionary<string, string> inbound = new Dictionary<string, string>();
-            inbound["all"] = "3";
+            Dictionary<string, string> inbound = new Dictionary<string, string>
+            {
+                ["all"] = "3"
+            };
 
 
             List<Flag> fullList = FlagsAPIClient.GetAsync<List<Flag>>(
@@ -65,9 +67,21 @@ namespace Flags.Controllers
 
         }
 
-        public bool SubmitAnswer(Guid questionID,Guid answer)
+        public string SubmitAnswer(Guid questionID,Guid userAnswer)
         {
-            return true;
+            Dictionary<string, string> incoming = new Dictionary<string, string>
+            {
+                ["questionID"] = questionID.ToString(),
+                ["userAnswer"] = userAnswer.ToString()
+            };
+
+            string correctOrNot = FlagsAPIClient.GetAsync<string>(
+                ConfigurationManager.AppSettings[ConfigurationParams.WCAPIURLScheme],
+                ConfigurationManager.AppSettings[ConfigurationParams.WCAPIHost],
+                ConfigurationParams.SubmitAnswerURN,
+                incoming
+                );
+            return correctOrNot;
         }
 
         //GET: Flags/Details/5

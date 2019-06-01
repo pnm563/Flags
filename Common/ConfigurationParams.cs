@@ -22,6 +22,8 @@ namespace Models
 
         public const string FlagQuestionURN = FlagsURN + "/GetQuestion";
 
+        public const string SubmitAnswerURN = FlagsURN + "/SubmitAnswer";
+
     }
 
     
