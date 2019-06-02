@@ -29,7 +29,12 @@ namespace Flags.Controllers
         [Authorize]
         public ActionResult Index()
         {
+            return View();
+        }
 
+        [Authorize]
+        public ActionResult Question()
+        {
             Dictionary<string, string> inbound = new Dictionary<string, string>();
             inbound["aspNetUserID"] = User.Identity.GetUserId();
 
@@ -40,8 +45,7 @@ namespace Flags.Controllers
                 inbound
             );
 
-            return View(QVM);
-
+            return View("Question",null,QVM);
         }
 
         [Authorize]

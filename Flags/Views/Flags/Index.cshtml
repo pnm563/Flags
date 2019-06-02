@@ -1,41 +1,9 @@
-﻿@using Flags.Models
-@using Models
-@model QuestionViewModel
+﻿<div id="question">
+    
+</div>
 
-
-
-    <h1>Please choose flag for @Model.QuestionText</h1>
-
-    <div class="row">
-        @foreach (FlagViewModel flag in Model.FlagChoices)
-        {
-        <div class="col-md-4">
-            <img id="@(flag.ID)" class="flagImg" src="~/Images/FlagsGuid/@(flag.ID).png" />
-        </div>
-
-        }
-    </div>
-
-<div id="div1"></div>
-
-    <script>
-    @foreach (FlagViewModel flag in Model.FlagChoices)
-    {
-
-        @:$('#@flag.ID').click(function () {
-        
-        @:$.ajax({
-        @:url: "/Flags/SubmitAnswer?questionID=@Model.ID&userAnswer=@flag.ID", success: function(result){
-        @:alert(result);
-        @:$("#div1").html("flaps");
-        @:    },
-        @:error: function () {
-        @:alert("error");
-        @:}
-        @:});
-        @:});
-
-    }
-
-    </script>
-
+<script>
+    $(document).ready(function () {
+        $('#question').load('/Flags/Question')
+    });
+</script>
