@@ -3,8 +3,17 @@
 @model QuestionViewModel
 @{ Layout = null; }
 
-
-<h1>Please choose flag for @Model.QuestionText</h1>
+<div class="panel-group">
+    <div class="panel panel-default">
+        <div class="panel-heading panel-heading-white clearfix">
+            <div class="row">
+                <div class="col-md-12">
+                    Click on the flag for: @Model.QuestionText
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 <div class="row">
     @foreach (FlagViewModel flag in Model.FlagChoices)
@@ -16,23 +25,22 @@
     }
 </div>
 
-<div id="div1"></div>
-
 <script>
     @foreach (FlagViewModel flag in Model.FlagChoices)
     {
 
         @:$('#@flag.ID').click(function () {
 
-        @:$.ajax({
-        @:url: "/Flags/SubmitAnswer?questionID=@Model.ID&userAnswer=@flag.ID", success: function(result){
-        @:  alert(result);
-        @:  $('#question').load('/Flags/Question')
-        @:    },
-        @:error: function () {
-        @:alert("error");
-        @:}
-        @:});
+            @:$.ajax({
+            @:url: "/Flags/SubmitAnswer?questionID=@Model.ID&userAnswer=@flag.ID", success: function(result){
+            @:  alert(result);
+            @:  $('#question').load('/Flags/Question')
+            @:},
+            @:error: function () {
+            @:  alert("error");
+            @:}
+            @:});
+        
         @:});
 
     }
