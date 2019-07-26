@@ -12,3 +12,4 @@ namespace Common
         public string MessageDetail { get; set; }
     }
 }
+// Foret
