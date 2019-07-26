@@ -10,19 +10,22 @@
                 <div class="col-md-12">
                     Click on the flag for: @Model.QuestionText
                 </div>
+                
             </div>
         </div>
     </div>
 </div>
 
 <div class="row">
+    <div class="col-md-3"></div>
     @foreach (FlagViewModel flag in Model.FlagChoices)
     {
-        <div class="col-md-4">
+        <div class="col-md-2">
             <img id="@(flag.ID)" class="flagImg" src="~/Images/FlagsGuid/@(flag.ID).png" />
         </div>
 
     }
+    <div class="col-md-3"></div>
 </div>
 
 <script>

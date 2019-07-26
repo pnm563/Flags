@@ -449,7 +449,7 @@ namespace Flags.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Flags", "Index");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
